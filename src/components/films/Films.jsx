@@ -5,9 +5,11 @@ import Navbar from "../accueil/Navbar";
 import Footer from "../accueil/Footer";
 import Form from "../accueil/Form";
 import { useState, useEffect } from "react";
+import Erreur from "../erreur/Erreur";
 
 function Films() {
   const [films, setFilms] = useState([]);
+  const [error, SetError] = useState(false);
 
   useEffect(() => {
     console.log("useeffect");
@@ -22,40 +24,48 @@ function Films() {
   const handlSentSearch = (newEntrie) => {
     if (newEntrie !== "") {
       const str = newEntrie.substr(0, 1);
+
       const moviesSort = data.entries.filter(
         (movie) => movie.title.toLowerCase().substr(0, 1) == str
       );
+      //console.log(moviesSort.length);
+      if (moviesSort.length !== 0) {
+        const mesFilmsTriee = moviesSort.sort((a, b) => {
+          const aMinuscule = a.title.toLowerCase();
+          const bMinuscule = b.title.toLowerCase();
 
-      const mesFilmsTriee = moviesSort.sort((a, b) => {
-        const aMinuscule = a.title.toLowerCase();
-        const bMinuscule = b.title.toLowerCase();
+          if (aMinuscule < bMinuscule) {
+            return -1;
+          }
+          if (aMinuscule > bMinuscule) {
+            return 1;
+          }
+          if (aMinuscule === bMinuscule) {
+            return 0;
+          }
+        });
 
-        if (aMinuscule < bMinuscule) {
-          return -1;
-        }
-        if (aMinuscule > bMinuscule) {
-          return 1;
-        }
-        if (aMinuscule === bMinuscule) {
-          return 0;
-        }
-      });
-
-      setFilms(mesFilmsTriee);
+        setFilms(mesFilmsTriee);
+      } else {
+        SetError(true);
+      }
     } else {
-      console.log("faut saisir klk chose !!!!");
+      // console.log("faut saisir klk chose !!!!");
+      SetError(true);
     }
     if (newEntrie == 2010) {
       const movies2010 = data.entries.filter(
         (movie) => movie.programType == "movie" && movie.releaseYear == 2010
       );
 
-      console.log(movies2010);
+      // console.log(movies2010);
       setFilms(movies2010);
     }
   };
 
-  return (
+  return error ? (
+    <Erreur />
+  ) : (
     <Fragment>
       <Navbar />
       <Form handlSentSearch={handlSentSearch} />
@@ -73,23 +83,6 @@ function Films() {
       <Footer />
     </Fragment>
   );
-
-  // function filmsTrier(mesFilms2010) {
-  //   mesFilms2010.sort((a, b) => {
-  //     const aMinuscule = a.title.toLowerCase();
-  //     const bMinuscule = b.title.toLowerCase();
-
-  //     if (aMinuscule < bMinuscule) {
-  //       return -1;
-  //     }
-  //     if (aMinuscule > bMinuscule) {
-  //       return 1;
-  //     }
-  //     if (aMinuscule === bMinuscule) {
-  //       return 0;
-  //     }
-  //   });
-  // }
 }
 
 export default Films;
