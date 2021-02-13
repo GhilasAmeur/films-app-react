@@ -20,15 +20,6 @@ function Films() {
   }, []);
 
   const handlSentSearch = (newEntrie) => {
-    if (newEntrie == 2010) {
-      const movies2010 = data.entries.filter(
-        (movie) => movie.programType == "movie" && movie.releaseYear == 2010
-      );
-
-      console.log(movies2010);
-      setFilms(movies2010);
-    }
-
     if (newEntrie !== "") {
       const str = newEntrie.substr(0, 1);
       const moviesSort = data.entries.filter(
@@ -53,6 +44,14 @@ function Films() {
       setFilms(mesFilmsTriee);
     } else {
       console.log("faut saisir klk chose !!!!");
+    }
+    if (newEntrie == 2010) {
+      const movies2010 = data.entries.filter(
+        (movie) => movie.programType == "movie" && movie.releaseYear == 2010
+      );
+
+      console.log(movies2010);
+      setFilms(movies2010);
     }
   };
 
