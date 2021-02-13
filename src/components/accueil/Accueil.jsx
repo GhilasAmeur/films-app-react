@@ -18,19 +18,32 @@ function Accueil() {
       </div>
 
       <div className=" container conta  text-align-center justify-content-center">
-        <div className="div-film ">
-          SERIES
-          <img clssName=" " src={im} alt="img" />
-          <h6 className="font-weight-lighter p-4">Popular Series</h6>
-        </div>
+        <Link
+          to="/films"
+          className="div-film"
+          style={{ textDecoration: "none" }}
+        >
+          <p className="">MOVIES</p>
 
-        <div className="div-film">
-          <Link className="f" to="/films">
-            MOVIES
-          </Link>
-          <img clssName=" " src={im} alt="img" />
-          <h6 className="font-weight-lighter p-4">Popular Movies</h6>
-        </div>
+          <img clssName="img-responsive" src={im} alt="img" />
+          <h6 className="font-weight-lighter p-2">Popular Movies</h6>
+        </Link>
+
+        <Link
+          to="/series"
+          className="div-film"
+          style={{ textDecoration: "none" }}
+        >
+          <p className="">SERIES</p>
+
+          <img
+            clssName=""
+            src={im}
+            // style={{ backgroundColor: "red" }}
+            alt="img"
+          />
+          <h6 className="font-weight-lighter p-2">Popular Movies</h6>
+        </Link>
       </div>
       <Footer />
     </Fragment>

@@ -6,8 +6,9 @@ import Footer from "../accueil/Footer";
 import Form from "../accueil/Form";
 import { useState, useEffect } from "react";
 import Erreur from "../erreur/Erreur";
+import { Link } from "react-router-dom";
 
-function Films() {
+function Films({ film }) {
   const [films, setFilms] = useState([]);
 
   const [error, SetError] = useState(false);
@@ -17,10 +18,15 @@ function Films() {
     const myMovies = data.entries.filter((film) => {
       return film.programType == "movie";
     });
+    console.log(myMovies);
 
     const my21Movies = myMovies.slice(0, 21);
     setFilms(my21Movies);
   }, []);
+
+  // handlDescription = () => {
+  //   console.log("kkkkkkkkkkkkkkk");
+  // };
 
   const handlSentSearch = (newEntrie) => {
     if (newEntrie == 2010) {
@@ -71,12 +77,16 @@ function Films() {
       <Form handlSentSearch={handlSentSearch} />
       <div className="hero">
         {films.map((film, index) => (
-          <div key={index} className="card box">
+          <Link
+            to={`/description/${film.title}`}
+            key={index}
+            className="card box"
+          >
             <img className="card-img-top" src={film.images["Poster Art"].url} />
             <div className="card-bod">
               <h6 className="card-title">{film.title}</h6>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 

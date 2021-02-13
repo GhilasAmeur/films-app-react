@@ -4,6 +4,7 @@ import Accueil from "./components/accueil/Accueil";
 import Films from "./components/films/Films";
 import Series from "./components/series/Series";
 import Erreur from "./components/erreur/Erreur";
+import Description from "./components/description/Description";
 
 function App() {
   return (
@@ -13,7 +14,9 @@ function App() {
           <Route exact path="/" component={Accueil} />
           <Route exact path="/films" component={Films} />
           <Route exact path="/series" component={Series} />
-          <Route exact path="/:erreur" component={Erreur} />
+          <Route exact path="/description/:id" component={Description} />
+
+          <Route path="/:erreur" component={Erreur} />
         </Switch>
       </Router>
     </div>
