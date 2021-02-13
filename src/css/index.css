@@ -1,0 +1,67 @@
+.conta {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-flow: wrap;
+}
+
+.div-film {
+  width: 170px;
+  height: 260px;
+  background: #1b1a1a;
+  margin: 20px;
+  box-sizing: border-box;
+  font-size: 40px;
+  text-align: center;
+  color: #fff;
+}
+div#f {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1200px) {
+  .div-film {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .div-film {
+    width: 90%;
+  }
+}
+
+.box {
+  height: 300px;
+  width: 170px;
+  display: flex;
+
+  margin: 6px;
+  box-shadow: 0 0 2px #000;
+  color: #fff;
+}
+.box h6 {
+  font-size: 15px;
+  color: #000;
+  overflow: hidden;
+  text-align: center;
+  margin-top: 7px;
+}
+
+.hero {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.div-form {
+  display: flex;
+}
+.div-form {
+  flex: 1;
+}
+.d-flex {
+  margin-left: auto;
+}
