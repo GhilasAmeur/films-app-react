@@ -9,6 +9,7 @@ import Erreur from "../erreur/Erreur";
 
 function Films() {
   const [films, setFilms] = useState([]);
+
   const [error, SetError] = useState(false);
 
   useEffect(() => {
@@ -22,7 +23,14 @@ function Films() {
   }, []);
 
   const handlSentSearch = (newEntrie) => {
-    if (newEntrie !== "") {
+    if (newEntrie == 2010) {
+      const movies2010 = data.entries.filter(
+        (movie) =>
+          movie.programType == "movie" && movie.releaseYear == newEntrie
+      );
+      setFilms(movies2010);
+      console.log(movies2010);
+    } else if (newEntrie !== "") {
       const str = newEntrie.substr(0, 1);
 
       const moviesSort = data.entries.filter(
@@ -50,16 +58,8 @@ function Films() {
         SetError(true);
       }
     } else {
-      // console.log("faut saisir klk chose !!!!");
+      console.log("faut saisir klk chose !!!!");
       SetError(true);
-    }
-    if (newEntrie == 2010) {
-      const movies2010 = data.entries.filter(
-        (movie) => movie.programType == "movie" && movie.releaseYear == 2010
-      );
-
-      // console.log(movies2010);
-      setFilms(movies2010);
     }
   };
 
